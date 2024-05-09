@@ -4,11 +4,11 @@ import "../styles/App.scss"
 function App() {
 
   const [grogu, setGrogu] = useState([0]);
-  const [cookies, setCookies] = useState([]);
+  const [cookies, setCookies] = useState(['🍪','🍪','🍪']);
   const [eggs, setEggs] = useState([]);
   const [frogs, setFrogs] = useState([]);
   const [dice, setDice] = useState(0);
-  const [game, setGame] = useState("off");
+  const [game, setGame] = useState("En curso");
 
 
   return (
@@ -29,13 +29,13 @@ function App() {
 
       <section>
         <button className="dice">Lanzar Dado</button>
-        <div className="game-status">En curso</div>
+        <div className="game-status">{game}</div>
       </section>
 
       <section className="goods-container">
-        <div className="goods-item">🍪</div>
-        <div className="goods-item">🍪</div>
-        <div className="goods-item">🍪</div>
+        <div className="goods-item">{cookies[0]}</div>
+        <div className="goods-item">{cookies[1]}</div>
+        <div className="goods-item">{cookies[2]}</div>
       </section>
       <section className="goods-container">
         <div className="goods-item">🥚</div>
