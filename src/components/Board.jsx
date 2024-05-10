@@ -1,10 +1,10 @@
-import { useState } from "react";
+
 import Grogu from "./Grogu";
 
 
 
-function Board() {
-    const [grogu, setGrogu] = useState(0);
+function Board(props) {
+    console.log(props.groguData);
 
   return (
     <section className="board">
