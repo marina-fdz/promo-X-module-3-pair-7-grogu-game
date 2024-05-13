@@ -4,7 +4,7 @@ import Grogu from "./Grogu";
 
 
 function Board(props) {
-    console.log(props.groguData);
+
 
   return (
     <section className="board">
