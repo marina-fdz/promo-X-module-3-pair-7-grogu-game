@@ -12,28 +12,65 @@ function Main() {
     const [dice, setDice] = useState(0);
     const [game, setGame] = useState("En curso");
 
-    const rollDice =(valueDice)=>{
-    
-      setDice(valueDice)
+    const playDice = (valueDice)=>{
+      const cargo = [...eggs, ...frogs, ...cookies];
+      console.log(cargo.length);
+      const goGrogu = grogu + 1;
+      console.log('grogu', grogu);
 
-      if (dice === 4){
-        setGame("Grogu avanza una casilla")
-      } else if (dice === 3){
-        if (frogs.length !== 0){
-        setGame("Has ayuda a mando a recoger una rana")
-        setFrogs(frogs.splice(1))
-      } 
-      } else if (dice === 2 && eggs.lenth !== 0){
-        setGame("Has ayuda a mando a recoger un huevo") 
-        setEggs(eggs.splice(1))
-      } else if (dice === 1){
-        if (cookies.length !== 0){
-        setGame("Has ayuda a mando a recoger una galleta")
-        setCookies(cookies.splice(1))
-        }
+      if(grogu >= 5){
+        setGame('¡Has perdido!');
+        
       } else {
-        setGame("En curso")
+        if (valueDice === 4){
+          setGrogu(goGrogu);
+          setGame("Grogu avanza una casilla");
       }
+    }
+
+      if(cargo.length > 1){
+        console.log('juega');
+        
+        if (valueDice === 3){
+          if (frogs.length > 0){
+          setGame("Has ayuda a mando a recoger una rana")
+          setFrogs(frogs.splice(1))
+        } else{
+          setGame("Grogu avanza una casilla");
+          setGrogu(goGrogu);
+        }
+        } else if (valueDice === 2){
+          if(eggs.length > 0){
+            setGame("Has ayuda a mando a recoger un huevo") 
+            setEggs(eggs.splice(1))
+          }else{
+            setGame("Grogu avanza una casilla");
+            setGrogu(goGrogu);
+          }
+          
+        } else if (valueDice === 1){
+          if (cookies.length > 0){
+          setGame("Has ayuda a mando a recoger una galleta")
+          setCookies(cookies.splice(1))
+          }else{
+            setGame("Grogu avanza una casilla");
+            setGrogu(goGrogu);
+          }
+        }
+      } else{
+        setGame('¡Has ganado!')
+        setFrogs([]);
+        setCookies([]);
+        setEggs([]);
+      }
+    }
+
+    const rollDice =()=>{
+      let valueDice = Math.ceil(Math.random() * 4);
+      setDice(valueDice);
+      console.log(valueDice, dice);
+      playDice(valueDice);
+  
     }
 
   
@@ -41,7 +78,7 @@ function Main() {
   return (
     <main className="page">
       <Board groguData={grogu}/>
-      <section>
+      <section className="section-dice">
       <Dice rollDice={rollDice}/>
         <div className="game-status">{game}</div>
       </section>

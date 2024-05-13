@@ -3,8 +3,8 @@ function Dice({rollDice}) {
     const handleClick = (event) => {
     
         event.preventDefault()
-        let valueDice = Math.ceil(Math.random() * 4)
-        rollDice(valueDice)
+        
+        rollDice()
         
     }
   return (
