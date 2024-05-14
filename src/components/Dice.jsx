@@ -2,9 +2,9 @@
 function Dice({rollDice}) {
     const handleClick = (event) => {
     
-        event.preventDefault()
+        event.preventDefault();
         
-        rollDice()
+        rollDice();
         
     }
   return (

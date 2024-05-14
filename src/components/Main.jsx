@@ -14,55 +14,104 @@ function Main() {
 
     const playDice = (valueDice)=>{
       const cargo = [...eggs, ...frogs, ...cookies];
-      console.log(cargo.length);
+      const eggsUpdate = [...eggs];
+      const frogsUpdate = [...frogs];
+      const cookiesUpdate = [...cookies];
       const goGrogu = grogu + 1;
-      console.log('grogu', grogu);
-
-      if(grogu >= 5){
-        setGame('¡Has perdido!');
+      console.log(goGrogu);
+      
         
-      } else {
-        if (valueDice === 4){
+        if(valueDice === 4){
           setGrogu(goGrogu);
           setGame("Grogu avanza una casilla");
-      }
-    }
-
-      if(cargo.length > 1){
-        console.log('juega');
-        
-        if (valueDice === 3){
-          if (frogs.length > 0){
+          
+        } else if (valueDice === 3){
+          if (frogsUpdate.length > 0){
           setGame("Has ayuda a mando a recoger una rana")
-          setFrogs(frogs.splice(1))
+          setFrogs(frogsUpdate.splice(1))
         } else{
-          setGame("Grogu avanza una casilla");
-          setGrogu(goGrogu);
+          setGame("Prueba otra vez");
+        
         }
         } else if (valueDice === 2){
-          if(eggs.length > 0){
+          if(eggsUpdate.length > 0){
             setGame("Has ayuda a mando a recoger un huevo") 
-            setEggs(eggs.splice(1))
+            setEggs(eggsUpdate.splice(1))
           }else{
-            setGame("Grogu avanza una casilla");
-            setGrogu(goGrogu);
+            setGame("Prueba otra vez");
+         
           }
           
         } else if (valueDice === 1){
-          if (cookies.length > 0){
+          if (cookiesUpdate.length > 0){
           setGame("Has ayuda a mando a recoger una galleta")
-          setCookies(cookies.splice(1))
+          setCookies(cookiesUpdate.splice(1))
           }else{
-            setGame("Grogu avanza una casilla");
-            setGrogu(goGrogu);
+            setGame("Prueba otra vez");
+            
           }
         }
-      } else{
-        setGame('¡Has ganado!')
-        setFrogs([]);
-        setCookies([]);
-        setEggs([]);
-      }
+      
+
+        if(grogu === 6){
+          setGame("Grogu se ha comido todo, has perdido!")
+          //Ocultar dado
+        }
+
+        if(cargo.length < 1){
+          
+          setEggs([]);
+          setFrogs([]);
+          setCookies([]);
+          setGame("¡Has ganado!");
+        }
+
+
+    //   if(grogu >= 5){
+    //     setGame('¡Has perdido!');
+        
+    //   } else {
+    //     if (valueDice === 4){
+    //       setGrogu(goGrogu);
+    //       setGame("Grogu avanza una casilla");
+    //   }
+    // }
+
+    //   if(cargo.length > 1){
+    //     console.log('juega');
+        
+    //     if (valueDice === 3){
+    //       if (frogs.length > 0){
+    //       setGame("Has ayuda a mando a recoger una rana")
+    //       setFrogs(frogs.splice(1))
+    //     } else{
+    //       setGame("Grogu avanza una casilla");
+    //       setGrogu(goGrogu);
+    //     }
+    //     } else if (valueDice === 2){
+    //       if(eggs.length > 0){
+    //         setGame("Has ayuda a mando a recoger un huevo") 
+    //         setEggs(eggs.splice(1))
+    //       }else{
+    //         setGame("Grogu avanza una casilla");
+    //         setGrogu(goGrogu);
+    //       }
+          
+    //     } else if (valueDice === 1){
+    //       if (cookies.length > 0){
+    //       setGame("Has ayuda a mando a recoger una galleta")
+    //       setCookies(cookies.splice(1))
+    //       }else{
+    //         setGame("Grogu avanza una casilla");
+    //         setGrogu(goGrogu);
+    //       }
+    //     }
+    //   } else{
+    //     setGame('¡Has ganado!')
+    //     setFrogs([]);
+    //     setCookies([]);
+    //     setEggs([]);
+    //   }
     }
 
     const rollDice =()=>{
