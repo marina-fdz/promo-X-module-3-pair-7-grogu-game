@@ -1,8 +1,13 @@
 
 
-function Button(props) {
+function Button({classScss, text, resetGame}) {
+  const handleClickReset=(ev)=>{
+    ev.preventDefault();
+    resetGame();
+
+  }
   return (
-    <button className={props.classScss}>{props.text}</button>
+    <button className={classScss} onClick={handleClickReset}>{text}</button>
   )
 }
 

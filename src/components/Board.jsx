@@ -3,12 +3,14 @@ import Grogu from "./Grogu";
 
 
 
-function Board(props) {
+function Board({groguData}) {
 
   const cells = ['','','','','','',''];
-  const cellsHtml = cells.map((cell)=>{
-    const index = cells.indexOf(cell);
-  return <div className="cell" key={index}></div>})
+  const cellsHtml = cells.map((cell, index)=>{
+   
+    const contentCell = index === groguData ? <Grogu/>: "";
+
+  return <div className="cell" key={index}>{contentCell}</div>})
   
 
   return (

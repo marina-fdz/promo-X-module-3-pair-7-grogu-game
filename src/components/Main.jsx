@@ -3,6 +3,8 @@ import Board from "./Board";
 import Button from "./Button";
 import Goods from "./Goods";
 import Dice from "./Dice";
+import Form from "./Form";
+import WelcomeText from "./WelcomeText";
 
 function Main() {
     const [grogu, setGrogu] = useState(0);
@@ -11,6 +13,7 @@ function Main() {
     const [frogs, setFrogs] = useState(['🐸','🐸','🐸']);
     const [dice, setDice] = useState(0);
     const [game, setGame] = useState("En curso");
+    const [name, setName] = useState("");
 
     const playDice = (valueDice)=>{
       const cargo = [...eggs, ...frogs, ...cookies];
@@ -65,53 +68,6 @@ function Main() {
           setCookies([]);
           setGame("¡Has ganado!");
         }
-
-
-    //   if(grogu >= 5){
-    //     setGame('¡Has perdido!');
-        
-    //   } else {
-    //     if (valueDice === 4){
-    //       setGrogu(goGrogu);
-    //       setGame("Grogu avanza una casilla");
-    //   }
-    // }
-
-    //   if(cargo.length > 1){
-    //     console.log('juega');
-        
-    //     if (valueDice === 3){
-    //       if (frogs.length > 0){
-    //       setGame("Has ayuda a mando a recoger una rana")
-    //       setFrogs(frogs.splice(1))
-    //     } else{
-    //       setGame("Grogu avanza una casilla");
-    //       setGrogu(goGrogu);
-    //     }
-    //     } else if (valueDice === 2){
-    //       if(eggs.length > 0){
-    //         setGame("Has ayuda a mando a recoger un huevo") 
-    //         setEggs(eggs.splice(1))
-    //       }else{
-    //         setGame("Grogu avanza una casilla");
-    //         setGrogu(goGrogu);
-    //       }
-          
-    //     } else if (valueDice === 1){
-    //       if (cookies.length > 0){
-    //       setGame("Has ayuda a mando a recoger una galleta")
-    //       setCookies(cookies.splice(1))
-    //       }else{
-    //         setGame("Grogu avanza una casilla");
-    //         setGrogu(goGrogu);
-    //       }
-    //     }
-    //   } else{
-    //     setGame('¡Has ganado!')
-    //     setFrogs([]);
-    //     setCookies([]);
-    //     setEggs([]);
-    //   }
     }
 
     const rollDice =()=>{
@@ -119,13 +75,26 @@ function Main() {
       setDice(valueDice);
       console.log(valueDice, dice);
       playDice(valueDice);
-  
     }
 
+    const changeName=(valueInput)=>{
+      setName(valueInput)
+    }
+
+    const resetGame=()=>{
+      setGame("En curso");
+      setGrogu(0);
+      setCookies(['🍪','🍪','🍪']);
+      setEggs(['🥚','🥚','🥚']);
+      setFrogs(['🐸','🐸','🐸'])
+      setName("")
+    }
   
 
   return (
     <main className="page">
+      <WelcomeText name={name}/>
+      <Form changeName={changeName} name={name}/>
       <Board groguData={grogu}/>
       <section className="section-dice">
       <Dice rollDice={rollDice}/>
@@ -135,7 +104,7 @@ function Main() {
         <Goods goodsData={eggs}/>
         <Goods goodsData={frogs}/>
       <section>
-        <Button classScss="restart-button" text="Reiniciar Juego"/>
+        <Button classScss="restart-button" text="Reiniciar Juego" resetGame={resetGame}/>
       </section>
     </main>
   )
