@@ -3,7 +3,7 @@ import Grogu from "./Grogu";
 
 
 
-function Board(props) {
+function Board() {
 
 
   return (
