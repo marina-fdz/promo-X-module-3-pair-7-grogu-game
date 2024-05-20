@@ -1,14 +1,14 @@
 
-function Dice({rollDice}) {
+function Dice({rollDice, game}) {
     const handleClick = (event) => {
-    
         event.preventDefault();
-        
         rollDice();
-        
     }
+
+    const classDice = (game === "Grogu se ha comido todo, has perdido!" || game === "¡Has ganado!") ? 'hidden' : 'dice';
+
   return (
-    <button className="dice" onClick={handleClick}>Lanzar Dado</button>
+    <button className={classDice} onClick={handleClick}>Lanzar Dado</button>
   )
 }
 

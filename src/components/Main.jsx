@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Board from "./Board";
 import Button from "./Button";
 import Goods from "./Goods";
@@ -12,18 +12,15 @@ function Main() {
     const [eggs, setEggs] = useState(['🥚','🥚','🥚']);
     const [frogs, setFrogs] = useState(['🐸','🐸','🐸']);
     const [dice, setDice] = useState(0);
-    const [game, setGame] = useState("En curso");
+    const [game, setGame] = useState("Cargamento listo para comenzar");
     const [name, setName] = useState("");
 
     const playDice = (valueDice)=>{
-      const cargo = [...eggs, ...frogs, ...cookies];
       const eggsUpdate = [...eggs];
       const frogsUpdate = [...frogs];
       const cookiesUpdate = [...cookies];
       const goGrogu = grogu + 1;
-      console.log(goGrogu);
-      
-        
+
         if(valueDice === 4){
           setGrogu(goGrogu);
           setGame("Grogu avanza una casilla");
@@ -54,21 +51,22 @@ function Main() {
             
           }
         }
-      
-
-        if(grogu === 6){
-          setGame("Grogu se ha comido todo, has perdido!")
-          //Ocultar dado
-        }
-
-        if(cargo.length < 1){
-          
-          setEggs([]);
-          setFrogs([]);
-          setCookies([]);
-          setGame("¡Has ganado!");
-        }
+    
     }
+
+    useEffect(()=>{
+
+      if(grogu > 6){
+        return setGame("Grogu se ha comido todo, has perdido!")
+        //Ocultar dado
+      }
+
+      if(eggs.length < 1 && frogs.length < 1 && cookies.length < 1){
+        
+        return setGame("¡Has ganado!");
+      }
+      
+    }, [game])
 
     const rollDice =()=>{
       let valueDice = Math.ceil(Math.random() * 4);
@@ -82,7 +80,7 @@ function Main() {
     }
 
     const resetGame=()=>{
-      setGame("En curso");
+      setGame("Cargamento listo para comenzar");
       setGrogu(0);
       setCookies(['🍪','🍪','🍪']);
       setEggs(['🥚','🥚','🥚']);
@@ -94,10 +92,10 @@ function Main() {
   return (
     <main className="page">
       <WelcomeText name={name}/>
-      <Form changeName={changeName} name={name}/>
+      <Form changeName={changeName} name={name} game={game}/>
       <Board groguData={grogu}/>
       <section className="section-dice">
-      <Dice rollDice={rollDice}/>
+      <Dice rollDice={rollDice} game={game}/>
         <div className="game-status">{game}</div>
       </section>
         <Goods goodsData={cookies}/>
