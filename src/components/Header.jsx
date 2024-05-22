@@ -1,8 +1,9 @@
-import React from 'react'
+import WelcomeText from './WelcomeText';
 
-function Header() {
+function Header({name}) {
+
   return (
-    <div>Header</div>
+    <WelcomeText name={name}/>
   )
 }
 

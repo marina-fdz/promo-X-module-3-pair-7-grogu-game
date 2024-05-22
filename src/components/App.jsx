@@ -8,13 +8,18 @@ import Options from "./Options";
 import Header from "./Header";
 
 function App() {
+  const [name, setName] = useState("");
+
+  const changeName=(valueInput)=>{
+    setName(valueInput)
+  }
   
   return (
     <div className="page">
-      <Header/>
+      <Header name={name}/>
 
       <Routes>
-        <Route path="/" element={<Main/>}/>
+        <Route path="/" element={<Main name={name} changeName={changeName}/>}/>
         <Route path="/instructions" element={<Instructions/>}/>
         <Route path="/options" element={<Options/>}/>
 

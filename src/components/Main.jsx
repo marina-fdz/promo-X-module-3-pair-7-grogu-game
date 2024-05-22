@@ -4,16 +4,16 @@ import Button from "./Button";
 import Goods from "./Goods";
 import Dice from "./Dice";
 import Form from "./Form";
-import WelcomeText from "./WelcomeText";
 
-function Main() {
+
+function Main({name, changeName}) {
     const [grogu, setGrogu] = useState(0);
     const [cookies, setCookies] = useState(['🍪','🍪','🍪']);
     const [eggs, setEggs] = useState(['🥚','🥚','🥚']);
     const [frogs, setFrogs] = useState(['🐸','🐸','🐸']);
     const [dice, setDice] = useState(0);
     const [game, setGame] = useState("Cargamento listo para comenzar");
-    const [name, setName] = useState("");
+    
 
     const playDice = (valueDice)=>{
       const eggsUpdate = [...eggs];
@@ -75,9 +75,7 @@ function Main() {
       playDice(valueDice);
     }
 
-    const changeName=(valueInput)=>{
-      setName(valueInput)
-    }
+   
 
     const resetGame=()=>{
       setGame("Cargamento listo para comenzar");
@@ -91,7 +89,7 @@ function Main() {
 
   return (
     <main className="page">
-      <WelcomeText name={name}/>
+      
       <Form changeName={changeName} name={name} game={game}/>
       <Board groguData={grogu}/>
       <section className="section-dice">
